@@ -1,2 +1,21 @@
-package com.example.carstore.service;public interface CarService {
+package com.example.carstore.service;
+
+import com.example.carstore.domain.car.Car;
+
+import java.util.List;
+import java.util.UUID;
+
+public interface CarService {
+
+    List<Car> getCars();
+
+    Car getByUuid(UUID uuid);
+
+    List<Car> getByUserUuid(UUID uuid);
+
+    Car update(Car car);
+
+    Car create(Car car, UUID userUuid);
+
+    void delete(UUID uuid);
 }

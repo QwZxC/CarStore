@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/CarStore
+    username: postgres
+    password: 301600
+    driver-class-name: org.postgresql.Driver
+  sql:
+    init:
+      mode: always
+      continue-on-error: false
+server:
+  port: 8090
+
+security:
+  jwt:
+    secret: cXdlZzEyM2cxNDJndTojSUgxcGlIUGloJ3AndTEzZ3QncDEzcGhwJ2YzaCdwaWZoRUpKUUxFSERM
+    access: 3600000
+    refresh: 2592000000

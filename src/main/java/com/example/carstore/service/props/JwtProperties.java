@@ -1,2 +1,17 @@
-package com.example.carstore.service.props;public class JwtProperties {
+package com.example.carstore.service.props;
+
+import lombok.Data;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
+
+@Data
+@Component
+@ConfigurationProperties(prefix = "security.jwt")
+public class JwtProperties {
+
+    private String secret;
+    private Long access;
+    private Long refresh;
+
+
 }
