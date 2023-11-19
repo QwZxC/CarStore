@@ -66,11 +66,10 @@ public class UserController {
     }
 
     @PostMapping("/{uuid}/cars")
-    public ResponseEntity<CarDto> createCar(@PathVariable UUID uuid,
-                                            @Validated(OnCreate.class) @RequestBody CarDto dto
+    public ResponseEntity<CarDto> createCar(@Validated(OnCreate.class) @RequestBody CarDto dto
     ) {
         Car car = mapper.map(dto, Car.class);
         return ResponseEntity
-                .ok(mapper.map(carService.create(car, uuid), CarDto.class));
+                .ok(mapper.map(carService.create(car), CarDto.class));
     }
 }

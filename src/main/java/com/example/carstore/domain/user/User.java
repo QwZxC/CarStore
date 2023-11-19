@@ -15,7 +15,7 @@ public class User {
 
     @Id
     private UUID uuid;
-    private String first_name;
+    private String name;
     private String username;
     private String password;
     @Column(name = "role")

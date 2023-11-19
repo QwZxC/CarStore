@@ -18,7 +18,7 @@ public class UserDto {
 
     @NotNull(message = "first name must be not null", groups = {OnCreate.class, OnUpdate.class})
     @Length(max = 255, message = "Name length must be smaller than 255 symbols.", groups = {OnCreate.class, OnUpdate.class})
-    private String firstName;
+    private String name;
 
     @Email
     @NotNull(message = "email name must be not null", groups = {OnCreate.class, OnUpdate.class})

@@ -15,7 +15,7 @@ public interface CarService {
 
     Car update(Car car);
 
-    Car create(Car car, UUID userUuid);
+    Car create(Car car);
 
     void delete(UUID uuid);
 }

@@ -40,15 +40,16 @@ public class JwtTokenProvider {
     }
 
     public String createAccessToken(UUID userUuid, String username, Set<Role> roles) {
-        Claims claims = Jwts.claims().setSubject(username).build();
-        claims.put("uuid", userUuid);
-        claims.put("roles", resolveRoles(roles));
+        Claims claims = Jwts.claims().subject(username)
+                .add("uuid", userUuid)
+                .add("roles", resolveRoles(roles))
+                .build();
         Date now = new Date();
         Date validity = new Date(now.getTime() + jwtProperties.getAccess());
         return Jwts.builder()
-                .setClaims(claims)
-                .setIssuedAt(now)
-                .setExpiration(validity)
+                .claims(claims)
+                .issuedAt(now)
+                .expiration(validity)
                 .signWith(key)
                 .compact();
     }
@@ -60,14 +61,15 @@ public class JwtTokenProvider {
     }
 
     public String createRefreshToken(UUID uuid, String username) {
-        Claims claims = Jwts.claims().setSubject(username).build();
-        claims.put("uuid", uuid);
+        Claims claims = Jwts.claims().subject(username)
+                .add("uuid", uuid)
+                .build();
         Date now = new Date();
         Date validity = new Date(now.getTime() + jwtProperties.getRefresh());
         return Jwts.builder()
-                .setClaims(claims)
-                .setIssuedAt(now)
-                .setExpiration(validity)
+                .claims(claims)
+                .issuedAt(now)
+                .expiration(validity)
                 .signWith(key)
                 .compact();
     }
