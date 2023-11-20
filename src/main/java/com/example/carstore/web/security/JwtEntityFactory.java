@@ -21,7 +21,9 @@ public class JwtEntityFactory {
         );
     }
 
-    private static Collection<GrantedAuthority> mapToGrantedAuthorities(ArrayList<Role> roles) {
+    private static Collection<GrantedAuthority> mapToGrantedAuthorities(
+            final ArrayList<Role> roles
+    ) {
         return roles.stream()
                 .map(Enum::name)
                 .map(SimpleGrantedAuthority::new)

@@ -19,6 +19,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
 import java.security.Key;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -39,22 +41,25 @@ public class JwtTokenProvider {
         key = Keys.hmacShaKeyFor(jwtProperties.getSecret().getBytes());
     }
 
-    public String createAccessToken(UUID userUuid, String username, Set<Role> roles) {
+    public String createAccessToken(
+            final UUID userUuid,
+            final String username,
+            final Set<Role> roles
+    ) {
         Claims claims = Jwts.claims().subject(username)
                 .add("uuid", userUuid)
                 .add("roles", resolveRoles(roles))
                 .build();
-        Date now = new Date();
-        Date validity = new Date(now.getTime() + jwtProperties.getAccess());
+        Instant validity = Instant.now()
+                .plus(jwtProperties.getAccess(), ChronoUnit.HOURS);
         return Jwts.builder()
                 .claims(claims)
-                .issuedAt(now)
-                .expiration(validity)
+                .expiration(Date.from(validity))
                 .signWith(key)
                 .compact();
     }
 
-    private List<String> resolveRoles(Set<Role> roles) {
+    private List<String> resolveRoles(final Set<Role> roles) {
         return roles.stream()
                 .map(Enum::name)
                 .collect(Collectors.toList());
@@ -64,12 +69,11 @@ public class JwtTokenProvider {
         Claims claims = Jwts.claims().subject(username)
                 .add("uuid", uuid)
                 .build();
-        Date now = new Date();
-        Date validity = new Date(now.getTime() + jwtProperties.getRefresh());
+        Instant validity = Instant.now()
+                .plus(jwtProperties.getRefresh(), ChronoUnit.HOURS);
         return Jwts.builder()
                 .claims(claims)
-                .issuedAt(now)
-                .expiration(validity)
+                .expiration(Date.from(validity))
                 .signWith(key)
                 .compact();
     }
@@ -105,7 +109,7 @@ public class JwtTokenProvider {
                 .build()
                 .parseClaimsJws(token);
 
-        return claims.getBody().getExpiration().before(new Date());
+        return !claims.getBody().getExpiration().before(new Date());
     }
 
     public Authentication getAuthentication(String token) {
@@ -122,5 +126,4 @@ public class JwtTokenProvider {
                 .getBody()
                 .getSubject();
     }
-
 }

@@ -50,16 +50,6 @@ public class ApplicationConfig {
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                .exceptionHandling()
-                .authenticationEntryPoint(((request, response, authException) -> {
-                    response.setStatus(HttpStatus.UNAUTHORIZED.value());
-                    response.getWriter().write("UNAUTHORIZED.");
-                }))
-                .accessDeniedHandler(((request, response, accessDeniedException) -> {
-                    response.setStatus(HttpStatus.FORBIDDEN.value());
-                    response.getWriter().write("UNAUTHORIZED.");
-                }))
-                .and()
                 .anonymous().disable()
                 .addFilterBefore(new JwtTokenFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
         return httpSecurity.build();
