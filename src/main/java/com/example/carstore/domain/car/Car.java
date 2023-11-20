@@ -18,7 +18,9 @@ public class Car {
     private String name;
 
     @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
     @ManyToOne
+    @JoinColumn(name = "brand_id")
     private Brand brand;
 }

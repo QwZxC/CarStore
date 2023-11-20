@@ -1,6 +1,6 @@
 package com.example.carstore.web.dto.brand;
 
-import com.example.carstore.domain.car.Car;
+import com.example.carstore.web.dto.car.CarDto;
 import com.example.carstore.web.dto.validation.OnCreate;
 import com.example.carstore.web.dto.validation.OnUpdate;
 import jakarta.validation.constraints.NotNull;
@@ -20,5 +20,5 @@ public class BrandDto {
     @Length(max = 255, message = "name must be smaller than 255 symbols", groups = {OnUpdate.class, OnCreate.class})
     private String name;
 
-    private List<Car> cars;
+    private List<CarDto> cars;
 }

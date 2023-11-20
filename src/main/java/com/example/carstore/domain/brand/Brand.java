@@ -17,7 +17,6 @@ public class Brand {
     private UUID uuid;
     private String name;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinTable(inverseJoinColumns = @JoinColumn(name = "uuid"))
+    @OneToMany
     private List<Car> cars;
 }
