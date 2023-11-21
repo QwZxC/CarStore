@@ -11,7 +11,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Validated
 @RestController
@@ -21,6 +23,16 @@ public class BrandController {
 
     private final ModelMapper mapper;
     private final BrandService brandService;
+
+    @GetMapping
+    public ResponseEntity<List<BrandDto>> getAll(){
+        List<BrandDto> brands = brandService.getAll()
+                .stream()
+                .map(brand -> mapper.map(brand, BrandDto.class ))
+                .toList();
+
+        return ResponseEntity.ok(brands);
+    }
 
     @GetMapping("/{uuid}")
     public ResponseEntity<BrandDto> getByUuid(@PathVariable UUID uuid) {

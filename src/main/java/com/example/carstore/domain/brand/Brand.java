@@ -9,7 +9,6 @@ import java.util.UUID;
 
 @Data
 @Entity
-@Table(name = "brand")
 public class Brand {
 
     @Id
@@ -17,6 +16,6 @@ public class Brand {
     private UUID uuid;
     private String name;
 
-    @OneToMany
+    @OneToMany(mappedBy = "brand")
     private List<Car> cars;
 }

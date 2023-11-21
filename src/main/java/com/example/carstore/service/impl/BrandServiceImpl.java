@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -15,6 +16,12 @@ import java.util.UUID;
 public class BrandServiceImpl implements BrandService {
 
     private final BrandRepository repository;
+
+
+    @Override
+    public List<Brand> getAll() {
+        return repository.findAll();
+    }
 
     @Override
     @Transactional(readOnly = true)
