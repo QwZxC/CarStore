@@ -14,9 +14,8 @@ public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private UUID uuid;
-
+    private Long price;
     private String name;
-
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;

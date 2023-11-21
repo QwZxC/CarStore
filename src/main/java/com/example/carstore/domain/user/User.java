@@ -18,12 +18,13 @@ public class User {
     private String name;
     private String username;
     private String password;
+    private Long balance;
     @Column(name = "role")
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "users_roles")
     @Enumerated(value = EnumType.STRING)
     private Set<Role> roles;
-
     @OneToMany(mappedBy = "user")
     private List<Car> cars;
+
 }
