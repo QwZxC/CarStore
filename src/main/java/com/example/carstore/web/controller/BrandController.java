@@ -4,6 +4,7 @@ import com.example.carstore.domain.brand.Brand;
 import com.example.carstore.service.BrandService;
 import com.example.carstore.web.dto.brand.BrandDto;
 import com.example.carstore.web.dto.validation.OnUpdate;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
@@ -19,6 +20,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("api/v1/brands")
+@Tag(name = "Brand Controller", description = "Brand")
 public class BrandController {
 
     private final ModelMapper mapper;

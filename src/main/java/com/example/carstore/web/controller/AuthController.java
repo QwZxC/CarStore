@@ -7,6 +7,8 @@ import com.example.carstore.web.dto.auth.JwtRequest;
 import com.example.carstore.web.dto.auth.JwtResponse;
 import com.example.carstore.web.dto.user.UserDto;
 import com.example.carstore.web.dto.validation.OnCreate;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.UUID;
 
+@Tag(name = "Auth Controller", description = "Auth")
 @Validated
 @RestController
 @RequiredArgsConstructor

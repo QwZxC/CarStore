@@ -2,6 +2,7 @@ package com.example.carstore.web.controller;
 
 import com.example.carstore.service.CarService;
 import com.example.carstore.web.dto.car.CarDto;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("api/v1/cars")
+@Tag(name = "Car Controller", description = "Car")
 public class CarController {
 
     private final CarService carService;

@@ -8,6 +8,7 @@ import com.example.carstore.web.dto.car.CarDto;
 import com.example.carstore.web.dto.user.UserDto;
 import com.example.carstore.web.dto.validation.OnCreate;
 import com.example.carstore.web.dto.validation.OnUpdate;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.constraints.Email;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -24,6 +25,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("api/v1/users")
+@Tag(name = "User Controller", description = "User")
 public class UserController {
 
     private final UserService userService;
