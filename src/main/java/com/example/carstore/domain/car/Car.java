@@ -12,14 +12,16 @@ import java.util.UUID;
 public class Car {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "uuid", nullable = false)
     private UUID uuid;
+    @Column(name = "price", nullable = false)
     private Long price;
+    @Column(name = "name", nullable = false)
     private String name;
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
     @ManyToOne
-    @JoinColumn(name = "brand_id")
+    @JoinColumn(name = "brand_id", nullable = false)
     private Brand brand;
 }

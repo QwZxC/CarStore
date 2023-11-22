@@ -1,0 +1,48 @@
+services:
+
+  application:
+    image: yantar/car-store
+    container_name: application
+    depends_on:
+      - postgres
+    ports:
+      - "5323:8090"
+    networks:
+      - carstore
+
+  postgres:
+    container_name: db
+    restart: always
+    image: postgres
+    environment:
+      POSTGRES_DB: CarStore
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 301600
+      PGDATA: /data/pgdata
+    ports:
+      - "5432:5432"
+    profiles:
+      - pg_15
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 2G
+    networks:
+      - carstore
+
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: secret
+      PGADMIN_LISTEN_PORT: 80
+    ports:
+      - "8000:80"
+    networks:
+      - carstore
+
+networks:
+  carstore:
+    driver: bridge

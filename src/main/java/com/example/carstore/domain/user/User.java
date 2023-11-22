@@ -14,10 +14,15 @@ import java.util.UUID;
 public class User {
 
     @Id
+    @Column(name = "uuid", nullable = false)
     private UUID uuid;
+    @Column(name = "name", nullable = false)
     private String name;
+    @Column(name = "username", nullable = false)
     private String username;
+    @Column(name = "password", nullable = false)
     private String password;
+    @Column(name = "balance", nullable = false)
     private Long balance;
     @Column(name = "role")
     @ElementCollection(fetch = FetchType.EAGER)
@@ -26,5 +31,4 @@ public class User {
     private Set<Role> roles;
     @OneToMany(mappedBy = "user")
     private List<Car> cars;
-
 }

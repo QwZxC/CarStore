@@ -12,10 +12,10 @@ import java.util.UUID;
 public class Brand {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "uuid", nullable = false)
     private UUID uuid;
+    @Column(name = "name",nullable = false)
     private String name;
-
     @OneToMany(mappedBy = "brand")
     private List<Car> cars;
 }
