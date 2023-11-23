@@ -23,7 +23,7 @@ public class User {
     @Column(name = "password", nullable = false)
     private String password;
     @Column(name = "balance", nullable = false)
-    private Long balance;
+    private Long balance = 0L;
     @Column(name = "role")
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "users_roles")

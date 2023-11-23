@@ -4,5 +4,5 @@ import java.util.UUID;
 
 public interface ShoppingService {
 
-    String BuyCar(UUID carUuid, String token);
+    String BuyCar(UUID carUuid);
 }

@@ -19,7 +19,7 @@ public class ShoppingController {
 
     private final ShoppingService shoppingService;
     @PutMapping("/{uuid}")
-    public ResponseEntity<String> buyCar(@PathVariable UUID uuid, @RequestHeader(name = "Authorization") String jwt) {
-        return ResponseEntity.ok(shoppingService.BuyCar(uuid, jwt.substring(7)));
+    public ResponseEntity<String> buyCar(@PathVariable UUID uuid) {
+        return ResponseEntity.ok(shoppingService.BuyCar(uuid));
     }
 }

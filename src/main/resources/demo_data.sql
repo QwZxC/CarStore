@@ -22,7 +22,7 @@ values (gen_random_uuid(), 'BMW M5 f90', (select uuid from users where name = 'J
        (gen_random_uuid(), 'Mercedes-AMG GT 4', (select uuid from users where name = 'Ivan Ivanov'),
         (select uuid from Brand where name = 'Mercedes-Benz'));
 
-insert into Users_roles(user_id, role)
+insert into Users_roles(user_uuid, role)
 values ((select uuid
          from Users
          where name = 'Jon Snow'), 'ROLE_ADMIN'),
