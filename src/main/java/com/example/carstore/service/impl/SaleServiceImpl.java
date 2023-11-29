@@ -2,6 +2,7 @@ package com.example.carstore.service.impl;
 
 import com.example.carstore.domain.car.Car;
 import com.example.carstore.domain.exception.AccessDeniedException;
+import com.example.carstore.domain.exception.AlreadySellingException;
 import com.example.carstore.domain.exception.ResourceNotFoundException;
 import com.example.carstore.domain.sale.Sale;
 import com.example.carstore.repository.CarRepository;
@@ -25,6 +26,9 @@ public class SaleServiceImpl implements SaleService {
     public String createSale(Sale sale) {
         Car salingCar = carRepository.findById(sale.getCar().getUuid()).orElseThrow(() -> new ResourceNotFoundException("Car not found"));
         ownerVerification(salingCar);
+        if (saleRepository.existsSaleByCarUuid(salingCar.getUuid())) {
+            throw new AlreadySellingException("You are already selling this car");
+        }
         sale.setUser(salingCar.getUser());
         saleRepository.save(sale);
         return "Successfully put up for sale";

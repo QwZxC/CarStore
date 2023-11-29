@@ -24,7 +24,7 @@ public class AppExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(AlreadyTakenException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseStatus(HttpStatus.CONFLICT)
     public ResponseEntity<ErrorResponse> handleAlreadyTakenException(AlreadyTakenException ex) {
         ErrorResponse response = new ErrorResponse(
                 HttpStatus.BAD_REQUEST,
@@ -51,5 +51,15 @@ public class AppExceptionHandler extends ResponseEntityExceptionHandler {
                 ex.getMessage()
         );
         return new ResponseEntity<>(response, HttpStatus.FORBIDDEN);
+    }
+
+    @ExceptionHandler(AlreadySellingException.class)
+    @ResponseStatus()
+    public ResponseEntity<ErrorResponse> handleAlreadySellingException(AlreadySellingException ex) {
+        ErrorResponse response = new ErrorResponse(
+                HttpStatus.CONFLICT,
+                ex.getMessage()
+        );
+        return new ResponseEntity<>(response, HttpStatus.CONFLICT);
     }
 }
