@@ -25,7 +25,7 @@ public class AppExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(AlreadyTakenException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ResponseEntity<ErrorResponse> handleAlreadyTakenException(AlreadyTakenException ex){
+    public ResponseEntity<ErrorResponse> handleAlreadyTakenException(AlreadyTakenException ex) {
         ErrorResponse response = new ErrorResponse(
                 HttpStatus.BAD_REQUEST,
                 ex.getMessage()
@@ -35,11 +35,21 @@ public class AppExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(NotEnoughMoneyException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ResponseEntity<ErrorResponse> handleNotEnoughMoneyException(NotEnoughMoneyException ex){
+    public ResponseEntity<ErrorResponse> handleNotEnoughMoneyException(NotEnoughMoneyException ex) {
         ErrorResponse response = new ErrorResponse(
                 HttpStatus.BAD_REQUEST,
                 ex.getMessage()
         );
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(AccessDeniedException.class)
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    public ResponseEntity<ErrorResponse> handleAccessDeniedException(AccessDeniedException ex) {
+        ErrorResponse response = new ErrorResponse(
+                HttpStatus.FORBIDDEN,
+                ex.getMessage()
+        );
+        return new ResponseEntity<>(response, HttpStatus.FORBIDDEN);
     }
 }

@@ -1,9 +1,11 @@
 package com.example.carstore.domain.user;
 
 import com.example.carstore.domain.car.Car;
+import com.example.carstore.domain.sale.Sale;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
@@ -30,5 +32,7 @@ public class User {
     @Enumerated(value = EnumType.STRING)
     private Set<Role> roles;
     @OneToMany(mappedBy = "user")
-    private List<Car> cars;
+    private List<Car> cars = new ArrayList<>();
+    @OneToMany(mappedBy = "user")
+    private List<Sale> sales = new ArrayList<>();
 }

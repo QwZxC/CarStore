@@ -7,7 +7,6 @@ import com.example.carstore.web.dto.auth.JwtRequest;
 import com.example.carstore.web.dto.auth.JwtResponse;
 import com.example.carstore.web.dto.user.UserDto;
 import com.example.carstore.web.dto.validation.OnCreate;
-import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -29,7 +28,6 @@ public class AuthController {
 
     private final AuthService authService;
     private final UserService userService;
-
     private final ModelMapper modelMapper;
 
     @PostMapping("/login")
@@ -40,7 +38,7 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<JwtResponse> register(@Validated(OnCreate.class) @RequestBody UserDto dto) {
         dto.setUuid(UUID.randomUUID());
-        User user = userService.create(modelMapper.map(dto, User.class));
+        userService.create(modelMapper.map(dto, User.class));
         return ResponseEntity.ok(
                 authService.login(
                         JwtRequest.builder()
