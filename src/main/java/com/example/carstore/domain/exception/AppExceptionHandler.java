@@ -27,10 +27,10 @@ public class AppExceptionHandler extends ResponseEntityExceptionHandler {
     @ResponseStatus(HttpStatus.CONFLICT)
     public ResponseEntity<ErrorResponse> handleAlreadyTakenException(AlreadyTakenException ex) {
         ErrorResponse response = new ErrorResponse(
-                HttpStatus.BAD_REQUEST,
+                HttpStatus.CONFLICT,
                 ex.getMessage()
         );
-        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(response, HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler(NotEnoughMoneyException.class)
@@ -57,9 +57,19 @@ public class AppExceptionHandler extends ResponseEntityExceptionHandler {
     @ResponseStatus()
     public ResponseEntity<ErrorResponse> handleAlreadySellingException(AlreadySellingException ex) {
         ErrorResponse response = new ErrorResponse(
-                HttpStatus.CONFLICT,
+                HttpStatus.FORBIDDEN,
                 ex.getMessage()
         );
-        return new ResponseEntity<>(response, HttpStatus.CONFLICT);
+        return new ResponseEntity<>(response, HttpStatus.FORBIDDEN);
+    }
+
+    @ExceptionHandler(TimesUpException.class)
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    public ResponseEntity<ErrorResponse> handleTimesUpException(TimesUpException ex) {
+        ErrorResponse response = new ErrorResponse(
+                HttpStatus.FORBIDDEN,
+                ex.getMessage()
+        );
+        return new ResponseEntity<>(response, HttpStatus.FORBIDDEN);
     }
 }
