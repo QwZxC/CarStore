@@ -5,10 +5,10 @@ import com.example.carstore.domain.exception.AccessDeniedException;
 import com.example.carstore.domain.exception.AlreadySellingException;
 import com.example.carstore.domain.exception.ResourceNotFoundException;
 import com.example.carstore.domain.entity.sale.Sale;
+import com.example.carstore.domain.exception.TimesUpException;
 import com.example.carstore.repository.CarRepository;
 import com.example.carstore.repository.SaleRepository;
 import com.example.carstore.service.SaleService;
-import com.example.carstore.web.dto.purchase.PurchaseDto;
 import com.example.carstore.web.security.JwtEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -25,12 +25,11 @@ public class SaleServiceImpl implements SaleService {
 
     @Override
     public String createSale(Sale sale) {
-        Car salingCar = carRepository.findById(sale.getCar().getUuid()).orElseThrow(() -> new ResourceNotFoundException("Car not found"));
-        ownerVerification(salingCar);
-        if (saleRepository.existsSaleByCarUuid(salingCar.getUuid())) {
+        if (saleRepository.existsSaleByCarUuid(
+                sale.getCar().getUuid())) {
             throw new AlreadySellingException("You are already selling this car");
         }
-        sale.setUser(salingCar.getUser());
+        verification(sale);
         saleRepository.save(sale);
         return "Successfully put up for sale";
     }
@@ -46,8 +45,22 @@ public class SaleServiceImpl implements SaleService {
     }
 
     @Override
-    public PurchaseDto updateSale(Sale sale) {
-        return null;
+    public Sale updateSale(Sale sale) {
+        if (saleRepository.findById(
+                        sale.getUuid()).orElseThrow(() -> new ResourceNotFoundException(""))
+                .getDateOfSale() != null) {
+            throw new TimesUpException();
+        }
+        verification(sale);
+        saleRepository.save(sale);
+        return sale;
+    }
+
+    private void verification(Sale sale) {
+        Car salingCar = carRepository.findById(
+                sale.getCar().getUuid()).orElseThrow(() -> new ResourceNotFoundException("Car not found"));
+        ownerVerification(salingCar);
+        sale.setUser(salingCar.getUser());
     }
 
     private void ownerVerification(Car car) {
