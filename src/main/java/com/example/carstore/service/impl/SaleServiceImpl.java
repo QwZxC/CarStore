@@ -8,6 +8,7 @@ import com.example.carstore.domain.entity.sale.Sale;
 import com.example.carstore.repository.CarRepository;
 import com.example.carstore.repository.SaleRepository;
 import com.example.carstore.service.SaleService;
+import com.example.carstore.web.dto.purchase.PurchaseDto;
 import com.example.carstore.web.security.JwtEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -42,6 +43,11 @@ public class SaleServiceImpl implements SaleService {
         );
         saleRepository.deleteById(saleUuid);
         return "Successfully withdrawn from sale";
+    }
+
+    @Override
+    public PurchaseDto updateSale(Sale sale) {
+        return null;
     }
 
     private void ownerVerification(Car car) {

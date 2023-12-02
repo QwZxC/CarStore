@@ -24,8 +24,19 @@ public class SaleController {
                 saleService.createSale(mapper.map(dto, Sale.class)));
     }
 
+    @PutMapping
+    public ResponseEntity<SaleDto> updateSale(@RequestBody SaleDto dto) {
+        return ResponseEntity.ok(
+                mapper.map(
+                        saleService.updateSale(
+                                mapper.map(dto, Sale.class)
+                        ),
+                        SaleDto.class)
+        );
+    }
+
     @DeleteMapping("/{uuid}")
-    public ResponseEntity<String> deleteSale(@PathVariable UUID uuid){
+    public ResponseEntity<String> deleteSale(@PathVariable UUID uuid) {
         return ResponseEntity.ok(saleService.deleteSale(uuid));
     }
 }
