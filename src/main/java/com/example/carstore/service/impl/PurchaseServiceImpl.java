@@ -1,13 +1,13 @@
 package com.example.carstore.service.impl;
 
-import com.example.carstore.domain.car.Car;
+import com.example.carstore.domain.entity.car.Car;
 import com.example.carstore.domain.exception.AccessDeniedException;
 import com.example.carstore.domain.exception.NotEnoughMoneyException;
 import com.example.carstore.domain.exception.ResourceNotFoundException;
 import com.example.carstore.domain.exception.TimesUpException;
-import com.example.carstore.domain.purchase.Purchase;
-import com.example.carstore.domain.sale.Sale;
-import com.example.carstore.domain.user.User;
+import com.example.carstore.domain.entity.purchase.Purchase;
+import com.example.carstore.domain.entity.sale.Sale;
+import com.example.carstore.domain.entity.user.User;
 import com.example.carstore.repository.CarRepository;
 import com.example.carstore.repository.PurchaseRepository;
 import com.example.carstore.repository.SaleRepository;

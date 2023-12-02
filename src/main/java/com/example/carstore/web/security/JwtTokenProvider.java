@@ -1,8 +1,8 @@
 package com.example.carstore.web.security;
 
 import com.example.carstore.domain.exception.AccessDeniedException;
-import com.example.carstore.domain.user.Role;
-import com.example.carstore.domain.user.User;
+import com.example.carstore.domain.entity.user.Role;
+import com.example.carstore.domain.entity.user.User;
 import com.example.carstore.service.UserService;
 import com.example.carstore.service.props.JwtProperties;
 import com.example.carstore.web.dto.auth.JwtResponse;

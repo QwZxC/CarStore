@@ -1,11 +1,10 @@
 package com.example.carstore.web.security;
 
-import com.example.carstore.domain.user.User;
+import com.example.carstore.domain.entity.user.User;
 import com.example.carstore.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service

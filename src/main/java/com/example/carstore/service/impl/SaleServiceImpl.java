@@ -1,10 +1,10 @@
 package com.example.carstore.service.impl;
 
-import com.example.carstore.domain.car.Car;
+import com.example.carstore.domain.entity.car.Car;
 import com.example.carstore.domain.exception.AccessDeniedException;
 import com.example.carstore.domain.exception.AlreadySellingException;
 import com.example.carstore.domain.exception.ResourceNotFoundException;
-import com.example.carstore.domain.sale.Sale;
+import com.example.carstore.domain.entity.sale.Sale;
 import com.example.carstore.repository.CarRepository;
 import com.example.carstore.repository.SaleRepository;
 import com.example.carstore.service.SaleService;

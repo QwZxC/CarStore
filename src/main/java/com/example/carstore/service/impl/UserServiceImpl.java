@@ -1,8 +1,8 @@
 package com.example.carstore.service.impl;
 
 import com.example.carstore.domain.exception.ResourceNotFoundException;
-import com.example.carstore.domain.user.Role;
-import com.example.carstore.domain.user.User;
+import com.example.carstore.domain.entity.user.Role;
+import com.example.carstore.domain.entity.user.User;
 import com.example.carstore.repository.UserRepository;
 import com.example.carstore.service.UserService;
 import lombok.RequiredArgsConstructor;

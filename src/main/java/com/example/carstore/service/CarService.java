@@ -1,6 +1,6 @@
 package com.example.carstore.service;
 
-import com.example.carstore.domain.car.Car;
+import com.example.carstore.domain.entity.car.Car;
 
 import java.util.List;
 import java.util.UUID;

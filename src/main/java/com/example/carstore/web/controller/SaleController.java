@@ -1,6 +1,6 @@
 package com.example.carstore.web.controller;
 
-import com.example.carstore.domain.sale.Sale;
+import com.example.carstore.domain.entity.sale.Sale;
 import com.example.carstore.service.SaleService;
 import com.example.carstore.web.dto.sale.SaleDto;
 import lombok.RequiredArgsConstructor;

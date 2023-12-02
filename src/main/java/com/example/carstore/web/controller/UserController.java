@@ -1,7 +1,7 @@
 package com.example.carstore.web.controller;
 
-import com.example.carstore.domain.car.Car;
-import com.example.carstore.domain.user.User;
+import com.example.carstore.domain.entity.car.Car;
+import com.example.carstore.domain.entity.user.User;
 import com.example.carstore.service.CarService;
 import com.example.carstore.service.UserService;
 import com.example.carstore.web.dto.car.CarDto;

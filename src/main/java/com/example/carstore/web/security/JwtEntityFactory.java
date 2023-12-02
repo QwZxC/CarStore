@@ -1,7 +1,7 @@
 package com.example.carstore.web.security;
 
-import com.example.carstore.domain.user.Role;
-import com.example.carstore.domain.user.User;
+import com.example.carstore.domain.entity.user.Role;
+import com.example.carstore.domain.entity.user.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 

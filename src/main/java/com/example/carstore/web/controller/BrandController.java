@@ -1,6 +1,6 @@
 package com.example.carstore.web.controller;
 
-import com.example.carstore.domain.brand.Brand;
+import com.example.carstore.domain.entity.brand.Brand;
 import com.example.carstore.service.BrandService;
 import com.example.carstore.web.dto.brand.BrandDto;
 import com.example.carstore.web.dto.validation.OnUpdate;
@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Validated
 @RestController

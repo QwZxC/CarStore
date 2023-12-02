@@ -1,6 +1,6 @@
 package com.example.carstore.service.impl;
 
-import com.example.carstore.domain.car.Car;
+import com.example.carstore.domain.entity.car.Car;
 import com.example.carstore.domain.exception.ResourceNotFoundException;
 import com.example.carstore.repository.CarRepository;
 import com.example.carstore.service.CarService;

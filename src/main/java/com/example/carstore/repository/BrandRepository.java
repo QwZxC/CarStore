@@ -1,6 +1,6 @@
 package com.example.carstore.repository;
 
-import com.example.carstore.domain.brand.Brand;
+import com.example.carstore.domain.entity.brand.Brand;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;
