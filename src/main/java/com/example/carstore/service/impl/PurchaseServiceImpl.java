@@ -44,7 +44,7 @@ public class PurchaseServiceImpl implements PurchaseService {
                 LocalDateTime.now());
         purchaseRepository.save(purchase);
         changeUserBalance(sale.getUser(), buyer, sale);
-        changeSaleStatus(sale);
+        changeSaleStatus(sale, LocalDateTime.now(), LocalDateTime.now());
         changeCarUser(sale.getCar(), buyer);
         return purchase;
     }
@@ -61,8 +61,7 @@ public class PurchaseServiceImpl implements PurchaseService {
         }
         changeUserBalance(purchase.getBuyer(), purchase.getSeller(), sale);
         changeCarUser(sale.getCar(), sale.getUser());
-        sale.setDateOfWithdrawalFromSale(null);
-        sale.setDateOfSale(null);
+        changeSaleStatus(sale, null, null);
         purchaseRepository.delete(purchase);
         return "The operation was successfully canceled";
     }
@@ -79,9 +78,13 @@ public class PurchaseServiceImpl implements PurchaseService {
         }
     }
 
-    private void changeSaleStatus(Sale sale) {
-        sale.setDateOfSale(LocalDateTime.now());
-        sale.setDateOfWithdrawalFromSale(LocalDateTime.now());
+    private void changeSaleStatus(
+            Sale sale,
+            LocalDateTime dateOfSale,
+            LocalDateTime dateOfWithdrawalFromSale
+    ) {
+        sale.setDateOfSale(dateOfSale);
+        sale.setDateOfWithdrawalFromSale(dateOfWithdrawalFromSale);
         saleRepository.save(sale);
     }
 
