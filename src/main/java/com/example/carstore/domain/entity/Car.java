@@ -25,4 +25,6 @@ public class Car {
     private Brand brand;
     @OneToMany(mappedBy = "car")
     private List<Sale> sale = new ArrayList<>();
+    @OneToMany(mappedBy = "car")
+    private List<CarRequest> requests = new ArrayList<>();
 }

@@ -9,5 +9,5 @@
     <include file="create-car-table.xml" relativeToChangelogFile="true"/>
     <include file="create-purchase-table.xml" relativeToChangelogFile="true"/>
     <include file="create-sale-table.xml" relativeToChangelogFile="true"/>
-
+    <include file="create-car-request-table.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>

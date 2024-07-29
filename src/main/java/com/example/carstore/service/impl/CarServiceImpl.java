@@ -1,8 +1,10 @@
 package com.example.carstore.service.impl;
 
 import com.example.carstore.domain.entity.Car;
+import com.example.carstore.domain.entity.CarRequest;
 import com.example.carstore.domain.exception.ResourceNotFoundException;
 import com.example.carstore.repository.CarRepository;
+import com.example.carstore.repository.CarRequestRepository;
 import com.example.carstore.service.api.CarService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
@@ -17,11 +19,22 @@ import java.util.UUID;
 public class CarServiceImpl implements CarService {
 
     private final CarRepository repository;
-
+    private final CarRequestRepository carRequestRepository;
     @Override
     @Transactional(readOnly = true)
     public List<Car> getCars(PageRequest pageRequest) {
         return repository.findAll(pageRequest).getContent();
+    }
+
+    @Override
+    public List<Car> getCars(String carName) {
+        List<Car> cars = repository.findAllByName(carName+'%');
+        cars.forEach(car -> {
+            CarRequest carRequest = new CarRequest();
+            carRequest.setCar(cars.get(0));
+            carRequestRepository.save(carRequest);
+        });
+        return cars;
     }
 
     @Override

@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Validated
 @RestController
@@ -29,10 +28,19 @@ public class CarController {
     @GetMapping
     public ResponseEntity<List<CarDto>> getCars(
             @RequestParam(required = false, defaultValue = "0") int page,
-            @RequestParam(required = false, defaultValue = "10") int size
+            @RequestParam(required = false, defaultValue = "10") int size,
+            @RequestParam(required = false, defaultValue = "") String carName
     ) {
+        if (carName.isBlank()) {
+            return ResponseEntity.ok(
+                    carService.getCars(PageRequest.of(page, size))
+                            .stream()
+                            .map(car -> mapper.map(car, CarDto.class))
+                            .toList()
+            );
+        }
         return ResponseEntity.ok(
-                carService.getCars(PageRequest.of(page, size))
+                carService.getCars(carName)
                         .stream()
                         .map(car -> mapper.map(car, CarDto.class))
                         .toList()

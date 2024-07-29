@@ -9,6 +9,7 @@ import java.util.UUID;
 public interface CarService {
 
     List<Car> getCars(PageRequest pageRequest);
+    List<Car> getCars(String carName);
 
     Car getByUuid(UUID uuid);
 
