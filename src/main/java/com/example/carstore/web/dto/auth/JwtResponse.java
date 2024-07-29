@@ -1,12 +1,13 @@
 package com.example.carstore.web.dto.auth;
 
 import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.UUID;
 
-@Data
+@Getter
+@Setter
 @Builder
 public class JwtResponse {
 

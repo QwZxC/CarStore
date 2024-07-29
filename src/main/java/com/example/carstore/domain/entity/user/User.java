@@ -1,7 +1,7 @@
 package com.example.carstore.domain.entity.user;
 
-import com.example.carstore.domain.entity.car.Car;
-import com.example.carstore.domain.entity.sale.Sale;
+import com.example.carstore.domain.entity.Car;
+import com.example.carstore.domain.entity.Sale;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -28,7 +28,7 @@ public class User {
     private Long balance = 0L;
     @Column(name = "role")
     @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "users_roles")
+    @CollectionTable(name = "user_roles")
     @Enumerated(value = EnumType.STRING)
     private Set<Role> roles;
     @OneToMany(mappedBy = "user")

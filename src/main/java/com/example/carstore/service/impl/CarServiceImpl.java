@@ -1,10 +1,11 @@
 package com.example.carstore.service.impl;
 
-import com.example.carstore.domain.entity.car.Car;
+import com.example.carstore.domain.entity.Car;
 import com.example.carstore.domain.exception.ResourceNotFoundException;
 import com.example.carstore.repository.CarRepository;
-import com.example.carstore.service.CarService;
+import com.example.carstore.service.api.CarService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,8 +20,8 @@ public class CarServiceImpl implements CarService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<Car> getCars() {
-        return repository.findAll();
+    public List<Car> getCars(PageRequest pageRequest) {
+        return repository.findAll(pageRequest).getContent();
     }
 
     @Override

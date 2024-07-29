@@ -1,6 +1,6 @@
 package com.example.carstore.web.controller;
 
-import com.example.carstore.service.PurchaseService;
+import com.example.carstore.service.api.PurchaseService;
 import com.example.carstore.web.dto.purchase.PurchaseDto;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;

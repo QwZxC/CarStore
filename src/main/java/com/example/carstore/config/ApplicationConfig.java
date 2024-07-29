@@ -16,6 +16,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -40,7 +41,7 @@ public class ApplicationConfig {
     }
 
     @Bean
-    public OpenAPI openAPI(){
+    public OpenAPI openAPI() {
         return new OpenAPI()
                 .addSecurityItem(new SecurityRequirement().addList("bearerAuth"))
                 .components(
@@ -61,22 +62,16 @@ public class ApplicationConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity
-                .cors()
-                .and()
-                .csrf().disable()
-                .authorizeHttpRequests()
-                .requestMatchers("/api/v1/auth/**").permitAll()
-                .requestMatchers("/swagger-ui/**").permitAll()
-                .requestMatchers("/v3/api-docs/**").permitAll()
-                .anyRequest()
-                .authenticated()
-                .and()
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
-                .anonymous().disable()
+        httpSecurity.csrf(AbstractHttpConfigurer::disable)
+                .cors(AbstractHttpConfigurer::disable)
+                .authorizeHttpRequests(req ->
+                        req.requestMatchers("/swagger-ui/**", "/v3/api-docs/**","/api/v1/auth/**")
+                                .permitAll()
+                                .anyRequest()
+                                .authenticated())
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(new JwtTokenFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
+
         return httpSecurity.build();
     }
 

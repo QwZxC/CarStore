@@ -1,0 +1,28 @@
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="v1-1" author="Mikhail">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT COUNT(*)
+                FROM INFORMATION_SCHEMA.TABLES
+                WHERE TABLE_SCHEMA = 'PUBLIC' AND TABLE_NAME = 'PURCHASE'
+            </sqlCheck>
+        </preConditions>
+        <sql>
+            create table PURCHASE
+            (
+                uuid      uuid primary key,
+                name      varchar(255) not null,
+                seller_id uuid not null,
+                buyer_id  uuid not null,
+                dateOfPurchase date,
+                CONSTRAINT fk_user foreign key (seller_id) references USERS (uuid),
+                CONSTRAINT fk_buer foreign key (buyer_id) references USERS(uuid)
+            );
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

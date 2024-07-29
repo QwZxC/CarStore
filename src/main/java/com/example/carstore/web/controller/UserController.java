@@ -1,15 +1,14 @@
 package com.example.carstore.web.controller;
 
-import com.example.carstore.domain.entity.car.Car;
+import com.example.carstore.domain.entity.Car;
 import com.example.carstore.domain.entity.user.User;
-import com.example.carstore.service.CarService;
-import com.example.carstore.service.UserService;
+import com.example.carstore.service.api.CarService;
+import com.example.carstore.service.api.UserService;
 import com.example.carstore.web.dto.car.CarDto;
 import com.example.carstore.web.dto.user.UserDto;
 import com.example.carstore.web.dto.validation.OnCreate;
 import com.example.carstore.web.dto.validation.OnUpdate;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.validation.constraints.Email;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
@@ -19,7 +18,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Validated
 @RestController
@@ -46,7 +44,7 @@ public class UserController {
     }
 
     @GetMapping
-    public ResponseEntity<UserDto> getByUserName(@RequestParam @Email String username) {
+    public ResponseEntity<UserDto> getByUserName(@RequestParam String username) {
         return ResponseEntity
                 .ok(mapper.map(userService.getByUsername(username), UserDto.class));
     }
@@ -63,12 +61,13 @@ public class UserController {
                 carService.getByUserUuid(uuid)
                         .stream()
                         .map(car -> mapper.map(car, CarDto.class))
-                        .collect(Collectors.toList())
+                        .toList()
         );
     }
 
-    @PostMapping("/{uuid}/cars")
-    public ResponseEntity<CarDto> createCar(@Validated(OnCreate.class) @RequestBody CarDto dto
+    @PostMapping("/cars")
+    public ResponseEntity<CarDto> createCar(
+            @Validated(OnCreate.class) @RequestBody CarDto dto
     ) {
         Car car = mapper.map(dto, Car.class);
         return ResponseEntity

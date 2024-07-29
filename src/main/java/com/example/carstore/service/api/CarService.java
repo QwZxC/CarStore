@@ -1,13 +1,14 @@
-package com.example.carstore.service;
+package com.example.carstore.service.api;
 
-import com.example.carstore.domain.entity.car.Car;
+import com.example.carstore.domain.entity.Car;
+import org.springframework.data.domain.PageRequest;
 
 import java.util.List;
 import java.util.UUID;
 
 public interface CarService {
 
-    List<Car> getCars();
+    List<Car> getCars(PageRequest pageRequest);
 
     Car getByUuid(UUID uuid);
 

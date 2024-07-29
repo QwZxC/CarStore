@@ -1,19 +1,23 @@
 spring:
+  liquibase:
+    enabled: true
+    change-log: db/db.changelog-master.xml
   docker:
     compose:
       enabled: false
   datasource:
     url: jdbc:postgresql://localhost:5432/CarStore
     username: postgres
-    password: 301600
+    password: 12345
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
     show-sql: true
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
 server:
   port: 8090
 security:

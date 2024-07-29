@@ -1,4 +1,4 @@
-package com.example.carstore.service;
+package com.example.carstore.service.api;
 
 import com.example.carstore.domain.entity.user.User;
 

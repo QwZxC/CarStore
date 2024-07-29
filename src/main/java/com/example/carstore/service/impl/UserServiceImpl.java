@@ -4,7 +4,7 @@ import com.example.carstore.domain.exception.ResourceNotFoundException;
 import com.example.carstore.domain.entity.user.Role;
 import com.example.carstore.domain.entity.user.User;
 import com.example.carstore.repository.UserRepository;
-import com.example.carstore.service.UserService;
+import com.example.carstore.service.api.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

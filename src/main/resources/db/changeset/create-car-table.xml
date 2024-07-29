@@ -1,0 +1,28 @@
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="v1-1" author="Mikhail">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT COUNT(*)
+                FROM INFORMATION_SCHEMA.TABLES
+                WHERE TABLE_SCHEMA = 'PUBLIC' AND TABLE_NAME = 'CAR'
+            </sqlCheck>
+        </preConditions>
+        <sql>
+            create table CAR
+            (
+                uuid     uuid primary key,
+                name     varchar(255) not null,
+                user_id  uuid,
+                brand_id uuid         not null,
+                CONSTRAINT fk_user foreign key (user_id) references Users (uuid),
+                CONSTRAINT fk_brand foreign key (brand_id) references Brand (uuid) on delete cascade on update no action
+                );
+
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

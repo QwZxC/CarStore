@@ -1,6 +1,5 @@
-package com.example.carstore.domain.entity.brand;
+package com.example.carstore.domain.entity;
 
-import com.example.carstore.domain.entity.car.Car;
 import jakarta.persistence.*;
 import lombok.Data;
 

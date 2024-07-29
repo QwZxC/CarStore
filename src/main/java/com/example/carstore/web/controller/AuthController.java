@@ -1,8 +1,8 @@
 package com.example.carstore.web.controller;
 
 import com.example.carstore.domain.entity.user.User;
-import com.example.carstore.service.AuthService;
-import com.example.carstore.service.UserService;
+import com.example.carstore.service.api.AuthService;
+import com.example.carstore.service.api.UserService;
 import com.example.carstore.web.dto.auth.JwtRequest;
 import com.example.carstore.web.dto.auth.JwtResponse;
 import com.example.carstore.web.dto.user.UserDto;
@@ -40,12 +40,7 @@ public class AuthController {
         dto.setUuid(UUID.randomUUID());
         userService.create(modelMapper.map(dto, User.class));
         return ResponseEntity.ok(
-                authService.login(
-                        JwtRequest.builder()
-                                .username(dto.getUsername())
-                                .password(dto.getPassword())
-                                .build()
-                ));
+                authService.login(new JwtRequest(dto.getUsername(), dto.getPassword())));
     }
 
     @PostMapping("/refresh")

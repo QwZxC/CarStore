@@ -1,16 +1,18 @@
 package com.example.carstore.web.dto.auth;
 
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
-import lombok.Builder;
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 
-@Data
-@Builder
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class JwtRequest {
 
-    @Email
     @NotNull(message = "username must be not null")
     @Length(max = 255, message = "email must be smaller than 255 symbols")
     private String username;

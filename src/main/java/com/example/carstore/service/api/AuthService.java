@@ -1,4 +1,4 @@
-package com.example.carstore.service;
+package com.example.carstore.service.api;
 
 import com.example.carstore.web.dto.auth.JwtRequest;
 import com.example.carstore.web.dto.auth.JwtResponse;

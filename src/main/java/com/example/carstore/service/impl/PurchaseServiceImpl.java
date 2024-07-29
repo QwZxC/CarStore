@@ -1,18 +1,18 @@
 package com.example.carstore.service.impl;
 
-import com.example.carstore.domain.entity.car.Car;
+import com.example.carstore.domain.entity.Car;
 import com.example.carstore.domain.exception.AccessDeniedException;
 import com.example.carstore.domain.exception.NotEnoughMoneyException;
 import com.example.carstore.domain.exception.ResourceNotFoundException;
 import com.example.carstore.domain.exception.TimesUpException;
-import com.example.carstore.domain.entity.purchase.Purchase;
-import com.example.carstore.domain.entity.sale.Sale;
+import com.example.carstore.domain.entity.Purchase;
+import com.example.carstore.domain.entity.Sale;
 import com.example.carstore.domain.entity.user.User;
 import com.example.carstore.repository.CarRepository;
 import com.example.carstore.repository.PurchaseRepository;
 import com.example.carstore.repository.SaleRepository;
 import com.example.carstore.repository.UserRepository;
-import com.example.carstore.service.PurchaseService;
+import com.example.carstore.service.api.PurchaseService;
 import com.example.carstore.web.security.JwtEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;

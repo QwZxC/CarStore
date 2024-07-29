@@ -25,6 +25,7 @@
         <jakarta-validation.version>3.0.2</jakarta-validation.version>
         <jjwt.version>0.12.3</jjwt.version>
         <springdoc.version>2.2.0</springdoc.version>
+        <liquibase.version>4.25.1</liquibase.version>
     </properties>
 
     <dependencies>
@@ -122,6 +123,12 @@
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt-impl</artifactId>
             <version>${jjwt.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-core</artifactId>
+            <version>${liquibase.version}</version>
         </dependency>
     </dependencies>
 

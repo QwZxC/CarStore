@@ -1,8 +1,8 @@
 package com.example.carstore.service.impl;
 
 import com.example.carstore.domain.entity.user.User;
-import com.example.carstore.service.AuthService;
-import com.example.carstore.service.UserService;
+import com.example.carstore.service.api.AuthService;
+import com.example.carstore.service.api.UserService;
 import com.example.carstore.web.dto.auth.JwtRequest;
 import com.example.carstore.web.dto.auth.JwtResponse;
 import com.example.carstore.web.security.JwtTokenProvider;

@@ -1,7 +1,7 @@
 package com.example.carstore.web.controller;
 
-import com.example.carstore.domain.entity.brand.Brand;
-import com.example.carstore.service.BrandService;
+import com.example.carstore.domain.entity.Brand;
+import com.example.carstore.service.api.BrandService;
 import com.example.carstore.web.dto.brand.BrandDto;
 import com.example.carstore.web.dto.validation.OnUpdate;
 import io.swagger.v3.oas.annotations.tags.Tag;
